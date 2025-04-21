@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraping App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1, h2 {
+            margin: 0;
+            padding: 10px;
+        }
+        h2 {
+            color: #34495e;
+            font-size: 1.2rem;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #3498db;
+        }
+        div {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        ol {
+            padding-left: 20px;
+        }
+        pre {
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        h3 {
+            color: #e74c3c;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Scraping App</h1>
+    </header>
+    <main>
+        <h2>Click the below button to run the script that can read the Twitter home page and fetch the top 5 trending topics under “What’s Happening” section from the homepage.</h2>
+        <form action="/scrape" method="post">
+            <button type="submit">Scrape Data</button>
+        </form>
+        
+        <div>
+            <h2>These are the most happening topics as on : {{ trend.date }}</h2>
+            <ol>
+                <li>{{ trend.nameoftrend1 }}</li>
+                <li>{{ trend.nameoftrend2 }}</li>
+                <li>{{ trend.nameoftrend3 }}</li>
+                <li>{{ trend.nameoftrend4 }}</li>
+                <li>{{ trend.nameoftrend5 }}</li>
+            </ol>
+            <h3>IP Address used for this query was : {{ trend.ip_address }}</h3>
+        </div>
+        <h2>Here’s a JSON extract of this record from the MongoDB:</h2>
+        <pre>{{ trend | tojson(indent=4) }}</pre>
+    </main>
+</body>
+</html>
